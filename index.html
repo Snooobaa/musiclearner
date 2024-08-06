@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WaveSurfer.js Example</title>
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+</head>
+<body>
+    <div id="waveform"></div>
+    <button onclick="playPause()">Play/Pause</button>
+    <button onclick="stop()">Stop</button>
+    <input type="file" id="audioFileInput" accept="audio/*" onchange="loadAudio(event)" />
+    <script>
+        // Initialize wavesurfer
+        var wavesurfer = WaveSurfer.create({
+            container: '#waveform',
+            waveColor: 'violet',
+            progressColor: 'purple'
+        });
+
+        // Play/Pause functionality
+        function playPause() {
+            wavesurfer.playPause();
+        }
+
+        // Stop functionality
+        function stop() {
+            wavesurfer.stop();
+        }
+
+        // Load audio from file input
+        function loadAudio(event) {
+            var file = event.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                wavesurfer.loadBlob(new Blob([e.target.result]));
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        // Load an initial audio file (optional)
+        // wavesurfer.load('path/to/audio/file.mp3');
+    </script>
+</body>
+</html>
