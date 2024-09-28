@@ -1,6 +1,14 @@
 import yt_dlp
 
 def download_audio(youtube_url):
+    """Downloads audio from a YouTube video and converts it to MP3 format.
+    
+    Args:
+        youtube_url (str): The URL of the YouTube video to download audio from.
+    
+    Returns:
+        None: This function doesn't return anything, but saves the audio file locally.
+    """
     ydl_opts = {
         'format': 'bestaudio/best',
         'postprocessors': [{
